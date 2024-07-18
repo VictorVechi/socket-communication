@@ -1,0 +1,26 @@
+FROM ubuntu:20.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
+    apt-get install -y \
+    build-essential \
+    gcc \
+    libc6-dev \
+    linux-headers-generic \
+    net-tools \
+    iputils-ping \
+    vim \
+    sudo
+
+WORKDIR /app
+COPY src /app
+
+# Compile o código do cliente
+RUN gcc -o 
+
+# Adicione permissão de execução ao cliente
+RUN chmod +x /app/
+
+# Defina o comando de entrada padrão
+CMD ["/app/main.c"]
