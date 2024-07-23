@@ -31,8 +31,6 @@ int server(int portaServidor) {
 
     if (socketServidor < 0) tratarErro("ERRO ao abrir o socket");
 
-    bzero((char *) &enderecoServidor, sizeof(enderecoServidor));
-
     if (bind(socketServidor, (struct sockaddr *) &enderecoServidor, sizeof(enderecoServidor)) < 0) 
         tratarErro("ERRO ao fazer o bind");
 
@@ -41,24 +39,17 @@ int server(int portaServidor) {
 
     while (isOpen) {
         socketCliente = accept(socketServidor, (struct sockaddr *) &enderecoCliente, &tamanhoCliente);
-        if (socketCliente < 0) tratarErro("ERRO ao aceitar");
-       
+        if (socketCliente < 0) tratarErro("ERRO ao aceitar\n");
+        if (socketCliente > 0) printf("Conexão aceita\n");
+
         numeroBytes = recv(socketCliente, buffer, sizeof buffer, 0);
         send(socketCliente, buffer, numeroBytes, 0);
         puts(buffer);
         fflush(stdout);
 
-
         close(socketCliente);
     }
 
-    
-    // if (socketCliente < 0) 
-    //     tratarErro("ERRO ao aceitar");
-
-    // bzero(buffer,256);
-  
-
-    // close(socketServidor);
+    close(socketServidor);
     return 0; 
 }
