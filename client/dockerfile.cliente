@@ -13,11 +13,11 @@ RUN apt-get update && \
     vim \
     sudo
 
-WORKDIR /app
-COPY src /app
+    WORKDIR /app
+    COPY src /app
+    
+    RUN make
+    
+    RUN chmod +x /app/client-app
 
-RUN gcc -o 
-
-RUN chmod +x /app/
-
-CMD ["/app/main.c"]
+CMD ["/app/client-app"]

@@ -9,6 +9,8 @@ int client(int porta_server)  {
     int socketClient;
     struct sockaddr_in enderecoServer;
     char buffer[256] = "hello world!";
+    char response_buffer[256];
+    int bytesReceived;
 
     //https://pubs.opengroup.org/onlinepubs/007908799/xns/socket.html
     //int socket(int domain, int type, int protocol);
@@ -25,6 +27,17 @@ int client(int porta_server)  {
     if(write(socketClient, buffer, strlen(buffer)) < 0){
         perror("Erro ao enviar msg");
     }
+
+    //https://pubs.opengroup.org/onlinepubs/007908799/xns/recv.html
+    //0 para rodar o recv sem nenhuma modificacao, talvez WAITALL seja util com o horario
+    bytesReceived = recv(socketClient, response_buffer, sizeof(response_buffer), 0);
+
+    if(bytesReceived < 0){
+        perror("erro ao receber msg");
+    } else {
+        printf("resposta do servidor %s\n", response_buffer);
+    }
+    
 
     close(socketClient);    
 
