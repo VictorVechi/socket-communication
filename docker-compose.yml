@@ -1,0 +1,27 @@
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: dockerfile.servidor
+    networks:
+      rede-socket:
+        ipv4_address: 192.168.1.2
+    ports:
+      - "2000:8080"
+
+  client:
+    build:
+      context: ./client
+      dockerfile: dockerfile.cliente
+    networks:
+      rede-socket:
+        ipv4_address: 192.168.1.3
+    ports:
+      - "2001:8080"
+
+networks:
+  rede-socket:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24

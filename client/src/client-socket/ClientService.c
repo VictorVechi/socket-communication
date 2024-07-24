@@ -5,6 +5,8 @@
 #include <arpa/inet.h>
 #include "ClientService.h"
 
+#define SERVER_IP "192.168.1.2"
+
 int client(int porta_server)  {
     int socketClient;
     struct sockaddr_in enderecoServer;
@@ -19,7 +21,7 @@ int client(int porta_server)  {
 
     enderecoServer.sin_family = AF_INET;
     enderecoServer.sin_port = htons(porta_server);
-    enderecoServer.sin_addr.s_addr = inet_addr("127.0.0.1");
+    enderecoServer.sin_addr.s_addr = inet_addr(SERVER_IP);
 
     if(connect(socketClient, (struct sockaddr *) &enderecoServer, sizeof(enderecoServer)) < 0) 
         perror("error no bind");
