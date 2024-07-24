@@ -16,11 +16,8 @@ RUN apt-get update && \
 WORKDIR /app
 COPY src /app
 
-# Compile o código do cliente
 RUN gcc -o 
 
-# Adicione permissão de execução ao cliente
 RUN chmod +x /app/
 
-# Defina o comando de entrada padrão
 CMD ["/app/main.c"]
