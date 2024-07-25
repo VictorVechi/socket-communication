@@ -6,12 +6,9 @@
 #define PORTA 8080
 
 int main() {
+    printf("Container Server Iniciado\n");
     printf("Servidor iniciado na porta %d\n", PORTA);
+    fflush(stdout);
     server(PORTA);
-    char *horario = getHorario();
-    if (horario != NULL) {
-        printf("Horário atual: %s\n", horario);
-        free(horario);
-    }
     return 0; 
 }
