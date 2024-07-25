@@ -42,19 +42,21 @@ int server(int portaServidor) {
 
     while (isOpen) {
         socketCliente = accept(socketServidor, (struct sockaddr *) &enderecoCliente, &tamanhoCliente);
-        if (socketCliente < 0) tratarErro("ERRO ao aceitar\n");
-        if (socketCliente > 0) printf("Conexão aceita\n");
+        if (socketCliente > 0) printf("Conexão recebida\n");
 
         numeroBytes = recv(socketCliente, buffer, sizeof buffer, 0);
         buffer[numeroBytes] = '\0';
 
         if(strcmp(buffer, KEY) == 0) {
-            printf("Chave correta\n");
+            printf("Chave correta\t (%s)\n", buffer);
             char *horario = getHorario();
+            printf("Horário atual servidor: %s\n", horario);
             send(socketCliente, horario, numeroBytes, 0);
+        } else {
+            printf("Chave incorreta\n");
+            send(socketCliente, "Chave incorreta", numeroBytes, 0);
         }
         
-        puts(buffer);
         fflush(stdout);
 
         close(socketCliente);

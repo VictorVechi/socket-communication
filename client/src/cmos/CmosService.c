@@ -5,7 +5,7 @@
 
 void atualizarDataHora(const char* dataHora) {
     struct timeval tempoValor;
-    struct tm tempoEstrutura;
+    struct tm tempoEstrutura = {0};
 
     if (strptime(dataHora, "%Y-%m-%d %H:%M:%S", &tempoEstrutura) == NULL) {
         perror("Erro ao converter data e hora");
