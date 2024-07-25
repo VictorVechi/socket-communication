@@ -10,7 +10,7 @@
 int client(int porta_server)  {
     int socketClient;
     struct sockaddr_in enderecoServer;
-    char buffer[256] = "hello world!";
+    char buffer[256] = "QWxpY2U6aG9yYXJpbw==";
     char response_buffer[256];
     int bytesReceived;
 
@@ -40,7 +40,6 @@ int client(int porta_server)  {
         printf("resposta do servidor %s\n", response_buffer);
     }
     
-
     close(socketClient);    
 
     return 0;

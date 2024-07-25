@@ -20,4 +20,4 @@ RUN make
 
 RUN chmod +x /app/server-app
 
-CMD ["/app/server-app"]
+CMD make && chmod +x /app/server-app && /app/server-app

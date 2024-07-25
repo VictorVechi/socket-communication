@@ -7,7 +7,7 @@
 
 int main() {
     printf("Servidor iniciado na porta %d\n", PORTA);
-    //server(PORTA);
+    server(PORTA);
     char *horario = getHorario();
     if (horario != NULL) {
         printf("Horário atual: %s\n", horario);

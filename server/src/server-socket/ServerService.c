@@ -8,6 +8,9 @@
 #include <arpa/inet.h>
 
 #include "ServerService.h"
+#include "../cmos/CmosService.h"
+
+#define KEY "QWxpY2U6aG9yYXJpbw=="
 
 void tratarErro(const char *mensagem) {
     perror(mensagem);
@@ -43,7 +46,14 @@ int server(int portaServidor) {
         if (socketCliente > 0) printf("Conexão aceita\n");
 
         numeroBytes = recv(socketCliente, buffer, sizeof buffer, 0);
-        send(socketCliente, buffer, numeroBytes, 0);
+        buffer[numeroBytes] = '\0';
+
+        if(strcmp(buffer, KEY) == 0) {
+            printf("Chave correta\n");
+            char *horario = getHorario();
+            send(socketCliente, horario, numeroBytes, 0);
+        }
+        
         puts(buffer);
         fflush(stdout);
 
