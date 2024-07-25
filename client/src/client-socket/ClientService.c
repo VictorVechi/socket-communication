@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include "ClientService.h"
+#include "../cmos/CmosService.h"
 
 #define SERVER_IP "192.168.1.2"
 
@@ -38,6 +39,8 @@ int client(int porta_server)  {
         perror("erro ao receber msg");
     } else {
         printf("resposta do servidor %s\n", response_buffer);
+        printf("atualizando horario\n");
+        atualizarDataHora(response_buffer);
     }
     
     close(socketClient);    
