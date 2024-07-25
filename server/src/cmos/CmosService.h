@@ -2,6 +2,6 @@
 #define CMOS_SERVICE_H
 
 
-void obterHorario();
+char* obterHorario();
 
 #endif
