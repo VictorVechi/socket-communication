@@ -39,6 +39,9 @@ int client(int porta_server)  {
         perror("erro ao receber msg");
     } else {
         printf("resposta do servidor %s\n", response_buffer);
+        if(strcmp(response_buffer, "Chave incorreta") == 0){
+            //colocar o tratar erro aqui
+        }
         printf("atualizando horario\n");
         atualizarDataHora(response_buffer);
     }
