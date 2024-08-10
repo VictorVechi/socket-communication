@@ -14,7 +14,6 @@ int main() {
     printf("Horário atual: %s\n", horario);
 
     sleep(1);
-
     client(PORTA);
 
     horario = getHorario();
