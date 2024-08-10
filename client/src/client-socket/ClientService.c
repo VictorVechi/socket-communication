@@ -20,9 +20,6 @@ int client(int porta_server)  {
     char response_buffer[256];
     int bytesReceived;
 
-    //https://pubs.opengroup.org/onlinepubs/007908799/xns/socket.html
-    //int socket(int domain, int type, int protocol);
-    //AF_INET -> dominio internet, SOCK_STREAM -> comunicacao TCP
     socketClient = socket(AF_INET, SOCK_STREAM, 0);
 
     enderecoServer.sin_family = AF_INET;
@@ -36,8 +33,6 @@ int client(int porta_server)  {
         tratarErro("ERRO ao enviar mensagem para o servidor");
     }
 
-    //https://pubs.opengroup.org/onlinepubs/007908799/xns/recv.html
-    //0 para rodar o recv sem nenhuma modificacao, talvez WAITALL seja util com o horario
     bytesReceived = recv(socketClient, response_buffer, sizeof(response_buffer), 0);
 
     if(bytesReceived < 0){
