@@ -13,7 +13,7 @@ int main() {
     printf("Cliente enviando mensagem na porta %d\n", PORTA);
     printf("Horário atual: %s\n", horario);
 
-    sleep(2);
+    sleep(1);
 
     client(PORTA);
 
