@@ -6,7 +6,12 @@
 #include "ClientService.h"
 #include "../cmos/CmosService.h"
 
-#define SERVER_IP "192.168.1.2"
+#define SERVER_IP "10.10.42.2"
+
+void tratarErro(const char *mensagem) {
+    perror(mensagem);
+    exit(1);
+}
 
 int client(int porta_server)  {
     int socketClient;
@@ -25,10 +30,10 @@ int client(int porta_server)  {
     enderecoServer.sin_addr.s_addr = inet_addr(SERVER_IP);
 
     if(connect(socketClient, (struct sockaddr *) &enderecoServer, sizeof(enderecoServer)) < 0) 
-        perror("error no bind");
+        tratarErro("ERRO ao conectar no servidor");
 
     if(write(socketClient, buffer, strlen(buffer)) < 0){
-        perror("Erro ao enviar msg");
+        tratarErro("ERRO ao enviar mensagem para o servidor");
     }
 
     //https://pubs.opengroup.org/onlinepubs/007908799/xns/recv.html
@@ -36,11 +41,11 @@ int client(int porta_server)  {
     bytesReceived = recv(socketClient, response_buffer, sizeof(response_buffer), 0);
 
     if(bytesReceived < 0){
-        perror("erro ao receber msg");
+        tratarErro("ERRO ao receber mensagem do servidor");
     } else {
         printf("resposta do servidor %s\n", response_buffer);
         if(strcmp(response_buffer, "Chave incorreta") == 0){
-            //colocar o tratar erro aqui
+           tratarErro("Chave inválida informada.");
         }
         printf("atualizando horario\n");
         atualizarDataHora(response_buffer);

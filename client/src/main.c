@@ -10,11 +10,11 @@ int main() {
     
     char* horario = getHorario();
 
+    printf("Cliente enviando mensagem na porta %d\n", PORTA);
     printf("Horário atual: %s\n", horario);
 
+    sleep(2);
 
-    printf("cliente enviando msg na porta %d\n", PORTA);
-    sleep(5);
     client(PORTA);
 
     horario = getHorario();
