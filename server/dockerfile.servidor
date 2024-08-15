@@ -7,11 +7,12 @@ RUN apt-get update && \
     build-essential \
     gcc \
     libc6-dev \
-    linux-headers-generic \
-    net-tools \
-    iputils-ping \
-    vim \
+    tzdata \
     sudo
+
+ENV TZ=America/Sao_Paulo
+
+RUN date
 
 WORKDIR /app
 COPY src /app

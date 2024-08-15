@@ -7,10 +7,6 @@ RUN apt-get update && \
     build-essential \
     gcc \
     libc6-dev \
-    linux-headers-generic \
-    net-tools \
-    iputils-ping \
-    vim \
     sudo
 
 WORKDIR /app
