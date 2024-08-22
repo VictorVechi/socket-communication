@@ -38,12 +38,12 @@ $ docker compose build
 
 ```bash
 # Rodando o servidor
-$ docker compose run server
+$ docker compose up server
 ```
 
-#### Uma vez que o servidor já esteja pronto, podemos rodar o cliente:
+#### Uma vez que o servidor já esteja pronto, iremos abrir outro terminal na mesma pasta e aí podemos rodar o cliente:
 
 ```bash
 # Rodando o cliente
-$ docker compose run client
+$ docker compose up client
 ```
